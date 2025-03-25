@@ -1,0 +1,31 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-creator: admin
+    opendatahub.io/notebook-image-desc: This is a custom notebook for running kfp-elyra
+    opendatahub.io/notebook-image-name: KFP-Elyra Notebook
+    opendatahub.io/notebook-image-url: 'quay.io/rh_ee_tavelino/workbench-images:jupyter-datascience-ubi9-python-3.11-2024b_20250315'
+    opendatahub.io/recommended-accelerators: '[]'
+  name: kfp-elyra-notebook
+  namespace: redhat-ods-applications
+  labels:
+    app.kubernetes.io/created-by: byon
+    opendatahub.io/dashboard: 'true'
+    opendatahub.io/notebook-image: 'true'
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations:
+        opendatahub.io/notebook-python-dependencies: '[]'
+        opendatahub.io/notebook-software: '[]'
+        openshift.io/imported-from: 'quay.io/rh_ee_tavelino/workbench-images:jupyter-datascience-ubi9-python-3.11-2024b_20250315'
+      from:
+        kind: DockerImage
+        name: 'quay.io/eformat/elyra-base:0.2.1'
+      importPolicy:
+        importMode: Legacy
+      referencePolicy:
+        type: Source

@@ -84,7 +84,7 @@ spec:
           workingDir: /opt/app-root/src
           envFrom:
             - secretRef:
-                name: minio-data
+                name: minio-kfp-elyra
       enableServiceLinks: false
       serviceAccountName: kfp-elyra-workbench
       volumes:
